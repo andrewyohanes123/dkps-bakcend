@@ -8,26 +8,24 @@ import { PaginatedResult } from './typings/QueryInterface';
 import sequelize from 'sequelize';
 import { Parser } from '../helpers/Parser';
 import NotFoundError from '../classes/NotFoundError';
-import { StudyProgramInstance, StudyProgramAttributes } from '../models/StudyProgram';
-import onlyAuth from '../middlewares/protector/auth';
+import { StudyProgramScoreInstance, StudyProgramScoreAttributes } from '../models/StudyProgramScore';
 
-const studyprogramsRoutes: Routes = (
+const studyprogramscoresRoutes: Routes = (
     app: express.Application,
     models: ModelFactoryInterface,
 ): express.Router => {
     const router: express.Router = express.Router();
-    router.use(onlyAuth());
 
     router.get(
         '/',
         Parser.validateQ(),
         a(
             async (req: express.Request, res: express.Response): Promise<void> => {
-                const parsed: sequelize.FindOptions<StudyProgramInstance> = Parser.parseQuery<StudyProgramInstance>(
+                const parsed: sequelize.FindOptions<StudyProgramScoreInstance> = Parser.parseQuery<StudyProgramScoreInstance>(
                     `${req.query.q}`,
                     models,
                 );
-                const data: PaginatedResult<StudyProgramInstance> = await models.StudyProgram.findAndCountAll(parsed);
+                const data: PaginatedResult<StudyProgramScoreInstance> = await models.StudyProgramScore.findAndCountAll(parsed);
                 const body: OkResponse = { data };
 
                 res.json(body);
@@ -40,9 +38,9 @@ const studyprogramsRoutes: Routes = (
         a(
             async (req: express.Request, res: express.Response): Promise<void> => {
                 const { id }: any = req.params;
-                const studyprogram: StudyProgramInstance | null = await models.StudyProgram.findByPk(id);
-                if (!studyprogram) throw new NotFoundError('StudyProgram tidak ditemukan');
-                const body: OkResponse = { data: studyprogram };
+                const studyprogramscore: StudyProgramScoreInstance | null = await models.StudyProgramScore.findByPk(id);
+                if (!studyprogramscore) throw new NotFoundError('StudyProgramScore tidak ditemukan');
+                const body: OkResponse = { data: studyprogramscore };
 
                 res.json(body);
             },
@@ -54,9 +52,9 @@ const studyprogramsRoutes: Routes = (
         // validation,
         a(
             async (req: express.Request, res: express.Response): Promise<void> => {
-                const attributes: StudyProgramAttributes = req.body;
-                const studyprogram: StudyProgramInstance = await models.StudyProgram.create(attributes);
-                const body: OkResponse = { data: studyprogram };
+                const attributes: StudyProgramScoreAttributes = req.body;
+                const studyprogramscore: StudyProgramScoreInstance = await models.StudyProgramScore.create(attributes);
+                const body: OkResponse = { data: studyprogramscore };
 
                 res.json(body);
             },
@@ -69,11 +67,11 @@ const studyprogramsRoutes: Routes = (
         a(
             async (req: express.Request, res: express.Response): Promise<void> => {
                 const { id }: any = req.params;
-                const attributes: StudyProgramAttributes = req.body;
-                const studyprogram: StudyProgramInstance | null = await models.StudyProgram.findByPk(id);
-                if (!studyprogram) throw new NotFoundError('StudyProgram tidak ditemukan');
-                const updatedStudyProgram: StudyProgramInstance = await studyprogram.update(attributes);
-                const body: OkResponse = { data: updatedStudyProgram };
+                const attributes: StudyProgramScoreAttributes = req.body;
+                const studyprogramscore: StudyProgramScoreInstance | null = await models.StudyProgramScore.findByPk(id);
+                if (!studyprogramscore) throw new NotFoundError('StudyProgramScore tidak ditemukan');
+                const updatedStudyProgramScore: StudyProgramScoreInstance = await studyprogramscore.update(attributes);
+                const body: OkResponse = { data: updatedStudyProgramScore };
 
                 res.json(body);
             },
@@ -85,10 +83,10 @@ const studyprogramsRoutes: Routes = (
         a(
             async (req: express.Request, res: express.Response): Promise<void> => {
                 const { id }: any = req.params;
-                const studyprogram: StudyProgramInstance | null = await models.StudyProgram.findByPk(id);
-                if (!studyprogram) throw new NotFoundError('StudyProgram tidak ditemukan');
-                await studyprogram.destroy();
-                const body: OkResponse = { data: studyprogram };
+                const studyprogramscore: StudyProgramScoreInstance | null = await models.StudyProgramScore.findByPk(id);
+                if (!studyprogramscore) throw new NotFoundError('StudyProgramScore tidak ditemukan');
+                await studyprogramscore.destroy();
+                const body: OkResponse = { data: studyprogramscore };
 
                 res.json(body);
             },
@@ -98,5 +96,5 @@ const studyprogramsRoutes: Routes = (
     return router;
 };
 
-export default studyprogramsRoutes;
+export default studyprogramscoresRoutes;
     

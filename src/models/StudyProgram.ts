@@ -6,6 +6,7 @@ import ModelFactoryInterface from './typings/ModelFactoryInterface';
 export interface StudyProgramAttributes {
 	id?: number;
 	name: string;
+	department_id?: number;
 	created_at?: Date;
 	updated_at?: Date;
 }
@@ -33,7 +34,8 @@ export const StudyProgramFactory: Factory<StudyProgramInstance, StudyProgramAttr
 	>('study_program', attributes, { underscored: true });
 
 	StudyProgram.associate = (models: ModelFactoryInterface): void => {
-		// StudyProgram.hasMany(models.Token, { onDelete: 'cascade' });
+		StudyProgram.hasMany(models.StudyProgramScore, { onDelete: 'cascade' });
+		StudyProgram.belongsTo(models.Department, { onDelete: 'cascade' });
 	};
 
 	return StudyProgram;

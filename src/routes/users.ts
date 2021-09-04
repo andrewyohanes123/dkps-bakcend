@@ -17,6 +17,7 @@ const usersRoute: Routes = (
 	models: ModelFactoryInterface,
 ): express.Router => {
 	const router: express.Router = express.Router();
+	router.use(onlyAuth());
 
 	router.get(
 		'/',

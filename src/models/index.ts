@@ -4,6 +4,8 @@ import { UserFactory } from './User';
 import { TokenFactory } from './Token';
 import { DocumentFactory } from './Document';
 import { StudyProgramFactory } from './StudyProgram';
+import { StudyProgramScoreFactory } from './StudyProgramScore';
+import { DepartmentFactory } from './Department';
 
 const createModels: Function = (): ModelFactoryInterface => {
 	const {
@@ -29,7 +31,9 @@ const createModels: Function = (): ModelFactoryInterface => {
 		User: UserFactory(sequelize, Sequelize),
 		Token: TokenFactory(sequelize, Sequelize),
 		StudyProgram: StudyProgramFactory(sequelize, Sequelize),
-		Document: DocumentFactory(sequelize, Sequelize)
+		Document: DocumentFactory(sequelize, Sequelize),
+		StudyProgramScore: StudyProgramScoreFactory(sequelize, Sequelize),
+		Department: DepartmentFactory(sequelize, Sequelize)
 	};
 
 	Object.keys(db).forEach(

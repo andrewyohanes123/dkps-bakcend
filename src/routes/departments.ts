@@ -8,26 +8,24 @@ import { PaginatedResult } from './typings/QueryInterface';
 import sequelize from 'sequelize';
 import { Parser } from '../helpers/Parser';
 import NotFoundError from '../classes/NotFoundError';
-import { StudyProgramInstance, StudyProgramAttributes } from '../models/StudyProgram';
-import onlyAuth from '../middlewares/protector/auth';
+import { DepartmentInstance, DepartmentAttributes } from '../models/Department';
 
-const studyprogramsRoutes: Routes = (
+const departmentsRoutes: Routes = (
     app: express.Application,
     models: ModelFactoryInterface,
 ): express.Router => {
     const router: express.Router = express.Router();
-    router.use(onlyAuth());
 
     router.get(
         '/',
         Parser.validateQ(),
         a(
             async (req: express.Request, res: express.Response): Promise<void> => {
-                const parsed: sequelize.FindOptions<StudyProgramInstance> = Parser.parseQuery<StudyProgramInstance>(
+                const parsed: sequelize.FindOptions<DepartmentInstance> = Parser.parseQuery<DepartmentInstance>(
                     `${req.query.q}`,
                     models,
                 );
-                const data: PaginatedResult<StudyProgramInstance> = await models.StudyProgram.findAndCountAll(parsed);
+                const data: PaginatedResult<DepartmentInstance> = await models.Department.findAndCountAll(parsed);
                 const body: OkResponse = { data };
 
                 res.json(body);
@@ -40,9 +38,9 @@ const studyprogramsRoutes: Routes = (
         a(
             async (req: express.Request, res: express.Response): Promise<void> => {
                 const { id }: any = req.params;
-                const studyprogram: StudyProgramInstance | null = await models.StudyProgram.findByPk(id);
-                if (!studyprogram) throw new NotFoundError('StudyProgram tidak ditemukan');
-                const body: OkResponse = { data: studyprogram };
+                const department: DepartmentInstance | null = await models.Department.findByPk(id);
+                if (!department) throw new NotFoundError('Department tidak ditemukan');
+                const body: OkResponse = { data: department };
 
                 res.json(body);
             },
@@ -54,9 +52,9 @@ const studyprogramsRoutes: Routes = (
         // validation,
         a(
             async (req: express.Request, res: express.Response): Promise<void> => {
-                const attributes: StudyProgramAttributes = req.body;
-                const studyprogram: StudyProgramInstance = await models.StudyProgram.create(attributes);
-                const body: OkResponse = { data: studyprogram };
+                const attributes: DepartmentAttributes = req.body;
+                const department: DepartmentInstance = await models.Department.create(attributes);
+                const body: OkResponse = { data: department };
 
                 res.json(body);
             },
@@ -69,11 +67,11 @@ const studyprogramsRoutes: Routes = (
         a(
             async (req: express.Request, res: express.Response): Promise<void> => {
                 const { id }: any = req.params;
-                const attributes: StudyProgramAttributes = req.body;
-                const studyprogram: StudyProgramInstance | null = await models.StudyProgram.findByPk(id);
-                if (!studyprogram) throw new NotFoundError('StudyProgram tidak ditemukan');
-                const updatedStudyProgram: StudyProgramInstance = await studyprogram.update(attributes);
-                const body: OkResponse = { data: updatedStudyProgram };
+                const attributes: DepartmentAttributes = req.body;
+                const department: DepartmentInstance | null = await models.Department.findByPk(id);
+                if (!department) throw new NotFoundError('Department tidak ditemukan');
+                const updatedDepartment: DepartmentInstance = await department.update(attributes);
+                const body: OkResponse = { data: updatedDepartment };
 
                 res.json(body);
             },
@@ -85,10 +83,10 @@ const studyprogramsRoutes: Routes = (
         a(
             async (req: express.Request, res: express.Response): Promise<void> => {
                 const { id }: any = req.params;
-                const studyprogram: StudyProgramInstance | null = await models.StudyProgram.findByPk(id);
-                if (!studyprogram) throw new NotFoundError('StudyProgram tidak ditemukan');
-                await studyprogram.destroy();
-                const body: OkResponse = { data: studyprogram };
+                const department: DepartmentInstance | null = await models.Department.findByPk(id);
+                if (!department) throw new NotFoundError('Department tidak ditemukan');
+                await department.destroy();
+                const body: OkResponse = { data: department };
 
                 res.json(body);
             },
@@ -98,5 +96,5 @@ const studyprogramsRoutes: Routes = (
     return router;
 };
 
-export default studyprogramsRoutes;
+export default departmentsRoutes;
     
