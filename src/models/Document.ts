@@ -5,7 +5,7 @@ import ModelFactoryInterface from './typings/ModelFactoryInterface';
 
 export interface DocumentAttributes {
 	id?: number;
-	filename: string;
+	name: string;
 	created_at?: Date;
 	updated_at?: Date;
 }
@@ -22,8 +22,8 @@ export const DocumentFactory: Factory<DocumentInstance, DocumentAttributes> = (
 	DataTypes: Sequelize.DataTypes,
 ): Sequelize.Model<DocumentInstance, DocumentAttributes> => {
 	const attributes: SequelizeAttributes<DocumentAttributes> = {
-		filename: {
-			type: DataTypes.TEXT,
+		name: {
+			type: DataTypes.STRING(191),
 			allowNull: false,
 		}
 	};
@@ -33,7 +33,7 @@ export const DocumentFactory: Factory<DocumentInstance, DocumentAttributes> = (
 	>('document', attributes, { underscored: true });
 
 	Document.associate = (models: ModelFactoryInterface): void => {
-		// Document.hasMany(models.Token, { onDelete: 'cascade' });
+		Document.hasMany(models.DocumentField, { onDelete: 'cascade' });
 	};
 
 	return Document;

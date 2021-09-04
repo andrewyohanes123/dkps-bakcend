@@ -5,6 +5,8 @@ import { StudyProgramAttributes, StudyProgramInstance } from '../StudyProgram';
 import { DocumentAttributes, DocumentInstance } from '../Document';
 import { StudyProgramScoreAttributes, StudyProgramScoreInstance } from '../StudyProgramScore';
 import { DepartmentAttributes, DepartmentInstance } from '../Department';
+import { DocumentFieldAttributes, DocumentFieldInstance } from '../DocumentField';
+import { FieldValueAttributes, FieldValueInstance } from '../FieldValue';
 interface Obj {
 	[s: string]: any;
 }
@@ -18,4 +20,6 @@ export default interface ModelFactoryInterface extends Obj {
 	Document: Sequelize.Model<DocumentInstance, DocumentAttributes>;
 	StudyProgramScore: Sequelize.Model<StudyProgramScoreInstance, StudyProgramScoreAttributes>;
 	Department: Sequelize.Model<DepartmentInstance, DepartmentAttributes>;
+	DocumentField: Sequelize.Model<DocumentFieldInstance, DocumentFieldAttributes>;
+	FieldValue: Sequelize.Model<FieldValueInstance, FieldValueAttributes>;
 }
