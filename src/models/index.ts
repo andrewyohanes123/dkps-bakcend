@@ -8,6 +8,7 @@ import { StudyProgramScoreFactory } from './StudyProgramScore';
 import { DepartmentFactory } from './Department';
 import { FieldValueFactory } from './FieldValue';
 import { DocumentFieldFactory } from './DocumentField';
+import { SimulationScoreFactory } from './SimulationScore';
 
 const createModels: Function = (): ModelFactoryInterface => {
 	const {
@@ -37,7 +38,8 @@ const createModels: Function = (): ModelFactoryInterface => {
 		StudyProgramScore: StudyProgramScoreFactory(sequelize, Sequelize),
 		Department: DepartmentFactory(sequelize, Sequelize),
 		FieldValue: FieldValueFactory(sequelize, Sequelize),
-		DocumentField: DocumentFieldFactory(sequelize, Sequelize)
+		DocumentField: DocumentFieldFactory(sequelize, Sequelize),
+		SimulationScore: SimulationScoreFactory(sequelize, Sequelize)
 	};
 
 	Object.keys(db).forEach(

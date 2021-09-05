@@ -9,6 +9,8 @@ export interface UserAttributes {
 	type: 'program_chief' | 'chief' | 'vice_director' | 'director' | 'head_team' | 'program_team' | 'administrator';
 	username: string;
 	password: string;
+	department_id?: number;
+	study_program_id?: number;
 	created_at?: Date;
 	updated_at?: Date;
 }
@@ -50,6 +52,8 @@ export const UserFactory: Factory<UserInstance, UserAttributes> = (
 
 	User.associate = (models: ModelFactoryInterface): void => {
 		User.hasMany(models.Token, { onDelete: 'cascade' });
+		User.belongsTo(models.Department, { onDelete: 'cascade' });
+		User.belongsTo(models.StudyProgram, { onDelete: 'cascade' });
 	};
 
 	return User;
