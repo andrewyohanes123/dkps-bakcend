@@ -6,9 +6,10 @@ import ModelFactoryInterface from './typings/ModelFactoryInterface';
 export interface StudyProgramScoreAttributes {
 	id?: number;
 	study_program_id?: number;
-  diploma_three: number;
-  diploma_four: number;
 	score_type: '3.a.1' | '3.a.1.1' | '3.a.1.2';
+	profession: number;
+	magister: number;
+	doctor: number;
 	created_at?: Date;
 	updated_at?: Date;
 }
@@ -25,18 +26,22 @@ export const StudyProgramScoreFactory: Factory<StudyProgramScoreInstance, StudyP
 	DataTypes: Sequelize.DataTypes,
 ): Sequelize.Model<StudyProgramScoreInstance, StudyProgramScoreAttributes> => {
 	const attributes: SequelizeAttributes<StudyProgramScoreAttributes> = {
-		diploma_four: {
-      type: DataTypes.INTEGER(32),
-      allowNull: false
-    },
-		diploma_three: {
-      type: DataTypes.INTEGER(32),
-      allowNull: false
-    },
 		score_type: {
 			type: DataTypes.ENUM(['3.a.1', '3.a.1.1', '3.a.1.2']),
 			allowNull: false,
 			defaultValue: '3.a.1'
+		},
+		magister: {
+			type: DataTypes.INTEGER(32),
+			allowNull: false
+		},
+		doctor: {
+			type: DataTypes.INTEGER(32),
+			allowNull: false
+		},
+		profession: {
+			type: DataTypes.INTEGER(32),
+			allowNull: false
 		}
 	};
 	const StudyProgramScore: Sequelize.Model<StudyProgramScoreInstance, StudyProgramScoreAttributes> = sequelize.define<

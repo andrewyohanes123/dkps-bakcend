@@ -6,6 +6,8 @@ import ModelFactoryInterface from './typings/ModelFactoryInterface';
 export interface StudyProgramAttributes {
 	id?: number;
 	name: string;
+	type: 'technology' | 'humaniora';
+	diploma: 3 | 4;
 	department_id?: number;
 	created_at?: Date;
 	updated_at?: Date;
@@ -26,7 +28,15 @@ export const StudyProgramFactory: Factory<StudyProgramInstance, StudyProgramAttr
 		name: {
 			type: DataTypes.STRING(191),
 			allowNull: false,
-		}
+		},
+		type: {
+			type: DataTypes.ENUM(['technology', 'humaniora']),
+			allowNull: false
+		},
+		diploma: {
+			type: DataTypes.ENUM(['3', '4']),
+			allowNull: false
+		},
 	};
 	const StudyProgram: Sequelize.Model<StudyProgramInstance, StudyProgramAttributes> = sequelize.define<
 		StudyProgramInstance,
