@@ -5,7 +5,7 @@ import ModelFactoryInterface from './typings/ModelFactoryInterface';
 
 export interface FieldValueAttributes {
 	id?: number;
-	value: string;
+	value: {[any: string]: string | number};
 	created_at?: Date;
 	updated_at?: Date;
 }
@@ -23,7 +23,7 @@ export const FieldValueFactory: Factory<FieldValueInstance, FieldValueAttributes
 ): Sequelize.Model<FieldValueInstance, FieldValueAttributes> => {
 	const attributes: SequelizeAttributes<FieldValueAttributes> = {
 		value: {
-			type: DataTypes.STRING(191),
+			type: DataTypes.JSONB,
 			allowNull: false,
 		}
 	};

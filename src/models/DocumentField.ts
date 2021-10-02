@@ -5,8 +5,7 @@ import ModelFactoryInterface from './typings/ModelFactoryInterface';
 
 export interface DocumentFieldAttributes {
 	id?: number;
-	name: string;
-  field_type: string;
+	properties: { field: string, type: string }[];
 	created_at?: Date;
 	updated_at?: Date;
 }
@@ -23,14 +22,10 @@ export const DocumentFieldFactory: Factory<DocumentFieldInstance, DocumentFieldA
 	DataTypes: Sequelize.DataTypes,
 ): Sequelize.Model<DocumentFieldInstance, DocumentFieldAttributes> => {
 	const attributes: SequelizeAttributes<DocumentFieldAttributes> = {
-		name: {
-			type: DataTypes.STRING(191),
+		properties: {
+			type: DataTypes.JSONB,
 			allowNull: false,
-		},
-    field_type: {
-      type: DataTypes.STRING(191),
-      allowNull: false
-    }
+		}
 	};
 	const DocumentField: Sequelize.Model<DocumentFieldInstance, DocumentFieldAttributes> = sequelize.define<
 		DocumentFieldInstance,
