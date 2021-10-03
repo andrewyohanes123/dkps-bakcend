@@ -30,7 +30,7 @@ export const FieldValueFactory: Factory<FieldValueInstance, FieldValueAttributes
 	const FieldValue: Sequelize.Model<FieldValueInstance, FieldValueAttributes> = sequelize.define<
 		FieldValueInstance,
 		FieldValueAttributes
-	>('fieldvalue', attributes, { underscored: true });
+	>('field_value', attributes, { underscored: true });
 
 	FieldValue.associate = (models: ModelFactoryInterface): void => {
 		FieldValue.belongsTo(models.DocumentField, { onDelete: 'cascade' });
