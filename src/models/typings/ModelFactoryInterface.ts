@@ -8,6 +8,7 @@ import { DepartmentAttributes, DepartmentInstance } from '../Department';
 import { DocumentFieldAttributes, DocumentFieldInstance } from '../DocumentField';
 import { FieldValueAttributes, FieldValueInstance } from '../FieldValue';
 import { SimulationScoreAttributes, SimulationScoreInstance } from '../SimulationScore';
+import { LecturerPositionAttributes, LecturerPositionInstance } from '../LecturerPosition';
 interface Obj {
 	[s: string]: any;
 }
@@ -24,4 +25,5 @@ export default interface ModelFactoryInterface extends Obj {
 	DocumentField: Sequelize.Model<DocumentFieldInstance, DocumentFieldAttributes>;
 	FieldValue: Sequelize.Model<FieldValueInstance, FieldValueAttributes>;
 	SimulationScore: Sequelize.Model<SimulationScoreInstance, SimulationScoreAttributes>;
+	LecturerPosition: Sequelize.Model<LecturerPositionInstance, LecturerPositionAttributes>;
 }
