@@ -10,6 +10,9 @@ export interface StudyProgramScoreAttributes {
 	profession: number;
 	magister: number;
 	doctor: number;
+	lecturer?: number;
+  chief_lecturer?: number;
+  professor?: number;
 	created_at?: Date;
 	updated_at?: Date;
 }
@@ -42,7 +45,22 @@ export const StudyProgramScoreFactory: Factory<StudyProgramScoreInstance, StudyP
 		profession: {
 			type: DataTypes.INTEGER(32),
 			allowNull: false
-		}
+		},
+		professor: {
+			type: DataTypes.INTEGER(32),
+			allowNull: true,
+			defaultValue: 0
+		},
+		lecturer: {
+			type: DataTypes.INTEGER(32),
+			allowNull: true,
+			defaultValue: 0
+		},
+		chief_lecturer: {
+			type: DataTypes.INTEGER(32),
+			allowNull: true,
+			defaultValue: 0
+		},
 	};
 	const StudyProgramScore: Sequelize.Model<StudyProgramScoreInstance, StudyProgramScoreAttributes> = sequelize.define<
 		StudyProgramScoreInstance,

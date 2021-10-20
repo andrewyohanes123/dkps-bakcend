@@ -34,6 +34,7 @@ export const FieldValueFactory: Factory<FieldValueInstance, FieldValueAttributes
 
 	FieldValue.associate = (models: ModelFactoryInterface): void => {
 		FieldValue.belongsTo(models.DocumentField, { onDelete: 'cascade' });
+		FieldValue.belongsTo(models.StudyProgram, { onDelete: 'cascade' });
 	};
 
 	return FieldValue;
