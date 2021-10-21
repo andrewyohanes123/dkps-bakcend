@@ -6,6 +6,7 @@ import ModelFactoryInterface from './typings/ModelFactoryInterface';
 export interface DocumentAttributes {
 	id?: number;
 	name: string;
+	type: 'D3' | 'D4';
 	created_at?: Date;
 	updated_at?: Date;
 }
@@ -25,6 +26,11 @@ export const DocumentFactory: Factory<DocumentInstance, DocumentAttributes> = (
 		name: {
 			type: DataTypes.STRING(191),
 			allowNull: false,
+		},
+		type: {
+			type: DataTypes.ENUM(['D3', 'D4']),
+			allowNull: true,
+			defaultValue: 'D3'
 		}
 	};
 	const Document: Sequelize.Model<DocumentInstance, DocumentAttributes> = sequelize.define<
