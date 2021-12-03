@@ -3,22 +3,27 @@ Requirement :
  - NodeJS v14
  - Postgresql
  - gcc, make, g++ compiler
+ - git
 
 **Install PostgreSQL dan C compiler**
     
-    sudo apt install gcc make g++ gpp postgresql -y
+    sudo apt install gcc make g++ gpp postgresql git -y
 
 **Install NodeJS** :
 [Link Tutorial](https://tecadmin.net/install-latest-nodejs-npm-on-debian/)
 
-**Note:**
-Setelah menginstall postgres, buat satu database baru.
+> **Note:** Setelah menginstall postgres, buat satu database baru.
 
 Setelah NodeJS berhasil terinstall, kemudian install yarn dan pm2 dengan perintah 
 
     sudo npm i -g yarn pm2
 
-Kemudian pada directory backend masukkan perintah 
+### Clone repository
+Clone repository ini dengan perintah
+
+    git clone https://github.com/andrewyohanes123/dkps-bakcend backend && cd backend
+
+Kemudian pada directory **backend** masukkan perintah 
 
     yarn
 
