@@ -2,7 +2,7 @@ export default {
 	dotenv: `
 # Database
 DB_HOST=localhost
-DB_DIALECT=mysql
+DB_DIALECT=postgres
 DB_DATABASE=
 DB_USER=
 DB_PASS=
@@ -11,17 +11,17 @@ DB_FORCE_RENEW=false
 # Request
 API_URL=/api
 REQUEST_LIMIT=1024mb
-ALLOW_ORIGIN=*
+ALLOW_ORIGIN=https://p4m.polimdo.ac.id
 
 # Token
-TOKEN_SECRET=
-REFRESH_TOKEN_SECRET=
+TOKEN_SECRET=some_secret_key.
+REFRESH_TOKEN_SECRET=some_secret_key.
 TOKEN_EXPIRATION=1m
 REFRESH_TOKEN_EXPIRATION=7d
 
 # System
 SYSTEM_LOGGING=false
-NODE_ENV=development
+NODE_ENV=production
     `,
 
 	route: `

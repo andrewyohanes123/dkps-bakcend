@@ -4,6 +4,9 @@ Requirement :
  - Postgresql
  - gcc, make, g++ compiler
 
+**Install PostgreSQL dan C compiler**
+    sudo apt install gcc make g++ gpp postgresql -y
+
 **Install NodeJS** :
 [Link Tutorial](https://tecadmin.net/install-latest-nodejs-npm-on-debian/)
 
@@ -19,54 +22,35 @@ Kemudian pada directory backend masukkan perintah
     yarn
 
 Tunggu sampai selesai menginstall dependencies setelah itu edit file ".env" sesuai dengan di bawah ini
+[Artikel tentang file .env](https://www.petanikode.com/nodejs-env/)
 
     # Database
-
     DB_HOST=localhost
-    
     DB_DIALECT=postgres
-    
     DB_DATABASE=`Nama DB`
-    
     DB_USER=postgres
-    
     DB_PASS=`Password Database`
-    
     DB_FORCE_RENEW=false
     
-      
-    
     # Request
-    
     API_URL=/api
-    
     REQUEST_LIMIT=1024mb
-    
     ALLOW_ORIGIN=*
-    
-      
     
     # Token
     
     TOKEN_SECRET=Password.
-    
     REFRESH_TOKEN_SECRET=Password.
-    
     TOKEN_EXPIRATION=1m
-    
     REFRESH_TOKEN_EXPIRATION=7d
     
-      
-    
     # System
-    
     SYSTEM_LOGGING=false
-    
     NODE_ENV=production
 
-Setelah itu build backend dengan perintah 
-		
-	yarn build
+Setelah itu build backend dengan perintah 	
+	
+    yarn build
 Setelah build berhasil, pada directory backend masukkan perintah
 
 	pm2 start dist/index.js --name akreditasi
