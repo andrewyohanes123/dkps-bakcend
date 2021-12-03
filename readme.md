@@ -5,6 +5,7 @@ Requirement :
  - gcc, make, g++ compiler
 
 **Install PostgreSQL dan C compiler**
+    
     sudo apt install gcc make g++ gpp postgresql -y
 
 **Install NodeJS** :
