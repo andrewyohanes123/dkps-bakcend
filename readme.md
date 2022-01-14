@@ -12,7 +12,42 @@ Requirement :
 **Install NodeJS** :
 [Link Tutorial](https://tecadmin.net/install-latest-nodejs-npm-on-debian/)
 
+**Konfigurasi PostgreSQL**
+
+    nano /etc/postgresql/11/main/pg_hba.conf
+
+Pada bagian ini ganti semua nilai md5 dan peer menjadi trust
+
+    local   all             all                                     trust
+    # IPv4 local connections:
+    host    all             all             127.0.0.1/32            trust
+    # IPv6 local connections:
+    host    all             all             ::1/128                 md5
+    # Allow replication connections from localhost, by a user with the
+    # replication privilege.
+    local   replication     all                                     peer
+    host    replication     all             127.0.0.1/32            md5
+    host    replication     all             ::1/128                 md5
+
+Save file kemudian masuk ke file config PostgreSQL
+
+    nano /etc/postgresql/11/main/postgresql.conf
+
+Uncomment dan ganti localhost menjadi "*"
+    
+    #listen_addresses = 'localhost' 
+
+Restart PostgreSQL
+
+    service postgresql restart
+
 > **Note:** Setelah menginstall postgres, buat satu database baru.
+Masuk ke cli PostgreSQL dengan perintah 
+
+    psql -Upostgres
+
+
+[Link tutorial buat database di PostgreSQL](https://www.tutorialspoint.com/postgresql/postgresql_create_database.htm)
 
 Setelah NodeJS berhasil terinstall, kemudian install yarn dan pm2 dengan perintah 
 
